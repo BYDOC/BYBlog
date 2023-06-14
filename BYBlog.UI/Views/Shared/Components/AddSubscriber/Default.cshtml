@@ -1,0 +1,38 @@
+﻿<div class="tech-btm">
+    <h4>Sign up to our newsletter</h4>
+    <p>Pellentesque dui, non felis. Maecenas male </p>
+
+    <form id="subscribeForm" asp-controller="Subscriber" asp-action="AddSubscriber">
+        <input type="email" placeholder="Email" required="" name="EMail" id="txtEmail">
+        <input type="submit" value="Subscribe" name="btnSubmit" onclick="AjaxFormSubmit()">
+        <span id="lblName"></span>
+    </form>
+    <span id="lblName"></span>
+</div>
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    function AjaxFormSubmit() {
+        //Set the URL.
+        var url = $("#subscribeForm").attr("action");
+
+        //Add the Field values to FormData object.
+        var formData = new FormData();
+        formData.append("EMail", $("#txtEmail").val());
+
+
+        $.ajax({
+            type: 'POST',
+            url: /Subscriber/AddSubscriber,
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function (response) {
+            if (response.Status === "success") {
+                $("#lblName").html(response.Name);
+            }
+        });
+    }
+</script>

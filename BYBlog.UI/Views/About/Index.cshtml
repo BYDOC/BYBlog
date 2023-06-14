@@ -1,0 +1,84 @@
+﻿@model List<BYBlog.Entity.Concrete.About>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">About</h3>
+        <div class="row inner-sec">
+            <!--left-->
+            <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+                @foreach (var item in Model)
+                {
+
+
+                <div class="blog-grid-top">
+
+                    <div class="blog_info_left_grid">
+                        <a href="single.html">
+                            <img src="~/template/images/b5.jpg" class="img-fluid" alt="">
+                            
+                        </a>
+                    </div>
+                    <h3>
+                        About
+                    </h3>
+                    <p>
+                        @item.Details1
+                    </p>
+                    <a href="single.html" class="btn btn-primary read-m">Read More</a>
+                </div>  
+                }
+            </div>
+            <!--//left-->
+            <!--right-->
+            <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+                <div class="right-blog-info text-left">
+                    <div class="tech-btm">
+                        <img src="~/template/images/banner1.jpg" class="img-fluid" alt=""/>
+                    </div>
+                    @await Component.InvokeAsync("AddSubscriber")
+                    <div class="tech-btm widget_social">
+                        <h4>Stay Connect</h4>
+                        <ul>
+
+                            <li>
+                                <a class="twitter" href="#">
+                                    <i class="fab fa-twitter"></i>
+                                    <span class="count">317K</span> Twitter Followers
+                                </a>
+                            </li>
+                            <li>
+                                <a class="facebook" href="#">
+                                    <i class="fab fa-facebook-f"></i>
+                                    <span class="count">218k</span> Twitter Followers
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dribble" href="#">
+                                    <i class="fab fa-dribbble"></i>
+
+                                    <span class="count">215k</span> Dribble Followers
+                                </a>
+                            </li>
+                            <li>
+                                <a class="pin" href="#">
+                                    <i class="fab fa-pinterest"></i>
+                                    <span class="count">190k</span> Pinterest Followers
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+            </aside>
+            <!--//right-->
+        </div>
+    </div>
+</section>

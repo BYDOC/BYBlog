@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>posttry</title>
+</head>
+<body>
+
+    <form id="myForm" asp-controller="Post" asp-action="posttry">
+        <input type="email" name="Email" value="" id="txtEmail" />
+        <input type="submit" value="Subscribe" name="btnSubmit" onclick="AjaxFormSubmit()">
+        <span id="lblName"></span>
+    </form>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        function AjaxFormSubmit() {
+            //Set the URL.
+            var url = $("#myForm").attr("action");
+
+            //Add the Field values to FormData object.
+            var formData = new FormData();
+            formData.append("EMail", $("#txtEmail").val());
+            
+
+            $.ajax({
+                type: 'POST',
+                url: /Post/posttry/,
+                data: formData,
+                processData: false,
+                contentType: false
+            }).done(function (response) {
+                if (response.Status === "success") {
+                    $("#lblName").html(response.Name);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

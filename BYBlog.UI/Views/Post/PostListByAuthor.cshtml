@@ -1,0 +1,27 @@
+﻿@using BYBlog.Entity.Concrete
+@model List<Post>
+@{
+    ViewData["Title"] = "PostListByAuthor";
+    Layout = "~/Views/Shared/_AuthorLayout.cshtml";
+}
+
+<h1>PostListByAuthor</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Post Title</th>
+        <th>Create Date</th>
+        <th>Category</th>
+        <td>Status</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Title</td>
+            <td>@item.DateCreated</td>
+            <td>@item.CategoryId</td>
+            <td>@item.IsDeleted</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,49 @@
+﻿@{
+    var postid = ViewData["id"];
+        }  
+<div class="comment-top">
+    <h4>Leave a Comment</h4>
+    <div class="comment-bottom">
+        <form id="commentForm" asp-controller="Comment" asp-action="AddComment">
+            <input class="form-control" type="text" name="Name" placeholder="Name" required="" id="txtName">
+            <input class="form-control" type="email" name="Email" placeholder="Email" required="" id="txtEmail">
+
+            <input class="form-control" type="text" name="Subject" placeholder="Subject" required="" id="txtSubject">
+
+            <textarea class="form-control" name="Message" placeholder="Message..." required="" id="txtMessage"></textarea>
+            <button type="submit" class="btn btn-primary submit">Submit</button>
+            <span id="lblName"></span>
+            <input type="hidden" name="PostId" value=@postid id="txtPostId"/>
+        </form>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    function AjaxFormSubmit() {
+        //Set the URL.
+        var url = $("#commentForm").attr("action");
+
+        //Add the Field values to FormData object.
+        var formData = new FormData();
+        formData.append("Name", $("#txtName").val());
+        formData.append("Email", $("#txtEmail").val());
+        formData.append("Subject", $("#txtSubject").val());
+        formData.append("Message", $("#txtMessage").val());
+        formData.append("PostId", $("#txtPostId").val());
+
+
+
+        $.ajax({
+            type: 'POST',
+            url: /Comment/AddComment,
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function (response) {
+            if (response.Status === "success") {
+                $("#lblName").html(response.Name);
+            }
+        });
+    }
+</script>
